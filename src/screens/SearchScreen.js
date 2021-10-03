@@ -1,10 +1,14 @@
 import React, { useCallback, useState } from 'react'
 import {View, StyleSheet} from 'react-native'
+import { useDispatch } from 'react-redux'
 
 import SearchBar from '../components/SearchBar'
+import { loadBusiness } from '../store/actions/business'
 
 const SearchScreen = () => {
     const [searchText, setSearchText] = useState('')
+
+    const dispatch = useDispatch()
 
     const toggleSearchText = useCallback(
         (textValue) => {
@@ -13,9 +17,8 @@ const SearchScreen = () => {
     , [])
 
     const onTextSubmit = useCallback(
-        () => {
-            console.log(searchText)
-            //TODO: configure Call to action
+        async () => {
+            await dispatch(loadBusiness(searchText))
         }
     , [searchText])
 

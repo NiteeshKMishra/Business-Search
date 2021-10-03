@@ -7,13 +7,13 @@ const SearchBar = ({searchText, toggleSearchText, onTextSubmit}) => {
         <View style={styles.container}>
             <Feather name={'search'} size={25}/>
             <TextInput 
-                style={styles.searchIUnput}
+                style={styles.searchInput}
                 placeholder={'search'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 value={searchText}
                 onChangeText={toggleSearchText}
-                onBlur={onTextSubmit}
+                onEndEditing={onTextSubmit}
             />
         </View>
     )
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         marginVertical: 24,
         alignItems: 'center',
         },
-        searchIUnput: {
-            fontSize: '1.2rem',
+        searchInput: {
+            fontSize: 18,
             flex: 1,
             height: 40,
             padding: 8,

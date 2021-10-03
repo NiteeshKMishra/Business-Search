@@ -1,19 +1,15 @@
-import {createAppContainer} from 'react-navigation'
-import {createStackNavigator} from 'react-navigation-stack'
+import React from 'react';
+import { Provider } from 'react-redux'
 
-import SearchScreen from './src/screens/SearchScreen'
+import store from './src/store';
 
-const navigator = createStackNavigator({
-  SearchScreen: SearchScreen
-}, {
-  defaultNavigationOptions: {
-    title: 'Business Search',
-    headerStyle: {
-      backgroundColor: '#12989ee6'
-    },
-    headerTitleAlign: 'center'
-  },
-  initialRouteName: 'SearchScreen'
-})
+import SearchScreenNavigator from './src/navigation/SearchNavigation';
 
-export default createAppContainer(navigator)
+export default App = () => {
+
+  return(
+    <Provider store={store}>
+      <SearchScreenNavigator />
+    </Provider>
+  )
+}

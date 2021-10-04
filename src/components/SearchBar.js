@@ -1,6 +1,6 @@
 import React from 'react'
-import {View, StyleSheet, TextInput} from 'react-native'
-import {Feather} from '@expo/vector-icons'
+import { View, StyleSheet, TextInput } from 'react-native'
+import { Feather } from '@expo/vector-icons'
 
 const SearchBar = ({searchText, toggleSearchText, onTextSubmit}) => {
     return(
@@ -22,7 +22,7 @@ const SearchBar = ({searchText, toggleSearchText, onTextSubmit}) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#F0EEEE',
+        backgroundColor: '#F4FAF8',
         padding: 16,
         borderRadius: 5,
         height: 50,

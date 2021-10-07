@@ -1,46 +1,42 @@
-import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from 'react-native';
 
-const BusinessDetail = ({business}) => {
+import BusinessParticulars from "./BusinessParticulars";
+import BusinessGallery from "./BusinessGallery";
+
+const businessDetails = ({business}) => {
+    const { name, photos, price, phone, transactions, categories, location: { display_address } } = business
+    const cusine = categories.map(category => {
+        if(typeof category === 'string') return category
+        else return category.title
+    }).join(',')
+
     return(
-        <View style={styles.detailContainer}>
-            <Image style={styles.businessImage} source={{uri: business.image_url}}/>
-            <Text style={styles.businessName}>{business.name}</Text>
-            <View style={styles.reviewsAndRatingsContainer}>
-                <Text style={styles.reviewsAndRatingsText}>Rating: {business.rating} stars</Text>
-                <Text style={styles.reviewsAndRatingsText}>Reviews: {business.review_count}</Text>
-            </View>
-        </View>
+    <View style={styles.detailsContainer}>
+        <Text style={styles.businessName}>{name}</Text>
+        <BusinessParticulars 
+            price={price}
+            phone={phone}
+            cusine={cusine}
+            address={display_address && display_address.length ? display_address.join(',') : ''}
+            services={transactions.join(',')}
+        />
+        <BusinessGallery
+            photos={photos}
+        />
+    </View>
     )
 }
 
 const styles = StyleSheet.create({
-    detailContainer: {
-        width: '100%',
-        height: 200,
-        marginBottom: 16,
-        backgroundColor: '#D4F1E6'
-    },
-    businessImage: {
-        width: '100%',
-        height: '70%',
-        borderRadius: 5
+    detailsContainer: {
+        alignItems: 'center'
     },
     businessName: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginVertical: 8,
-        alignSelf: 'center'
-    },
-    reviewsAndRatingsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center'
-    },
-    reviewsAndRatingsText: {
-        fontSize: 12,
-        fontWeight: 'normal'
+        marginVertical: 16
     }
 })
 
-export default BusinessDetail
+export default businessDetails

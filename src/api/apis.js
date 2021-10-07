@@ -12,3 +12,12 @@ export const searchApi = async (term) => {
         return {res: [], err: error.message}
     }
 }
+
+export const getBusinessApi = async (id) => {
+    try {
+        const businessResult = await axios.get(`/${id}`)
+        return {res: businessResult.data, err: null}
+    } catch (error) {
+        return {res: {}, err: error.message}
+    }
+}

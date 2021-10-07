@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet, View, Text } from 'react-native';
 import { useSelector } from "react-redux";
 
-import BusinessDetail from "./BusinessDetails";
+import BusinessCard from "./BusinessCard";
 
 const BusinessList = () => {
     const businesses = useSelector(state => state.businesses.businesses)
@@ -14,7 +14,7 @@ const BusinessList = () => {
                 keyExtractor={business => business.id}
                 data={businesses}
                 renderItem={({item}) => (
-                    <BusinessDetail business={item} />
+                    <BusinessCard business={item} />
                 )}
                 showsVerticalScrollIndicator={false}
             />
@@ -25,7 +25,8 @@ const BusinessList = () => {
 const styles = StyleSheet.create({
     listContainer: {
         alignItems: 'center',
-        marginTop: 8
+        marginTop: 8,
+        marginHorizontal: 8
     },
     listText: {
         marginBottom: 12

@@ -9,7 +9,7 @@ const DEFAULT_TEXT = 'pasta'
 import SearchBar from '../components/SearchBar'
 import { loadBusiness } from '../store/actions/business'
 
-const SearchScreen = () => {
+const BusinesssSearch = () => {
     const [searchText, setSearchText] = useState('')
 
     const dispatch = useDispatch()
@@ -44,4 +44,4 @@ const SearchScreen = () => {
 
 const styles = StyleSheet.create({})
 
-export default SearchScreen
+export default BusinesssSearch

@@ -3,7 +3,8 @@ import * as ActionTypes from '../actionTypes/business'
 const initialState = {
     businesses: [],
     loadingBusiness: false,
-    loadingBusinessErr: null
+    loadingBusinessErr: null,
+    currentBusiness: {}
 }
 
 export default (state = initialState, {type, data}) => {
@@ -23,6 +24,12 @@ export default (state = initialState, {type, data}) => {
                 ...state,
                 loadingBusinessErr: null,
                 businesses: data.businesses
+            };
+        case ActionTypes.SET_CURRENT_BUSINESS:
+            return {
+                ...state,
+                loadingBusinessErr: null,
+                currentBusiness: data.business
             };
         default:
             return state

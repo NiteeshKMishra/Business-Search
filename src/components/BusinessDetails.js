@@ -6,7 +6,7 @@ import BusinessGallery from "./BusinessGallery";
 
 const businessDetails = ({business}) => {
     const { name, photos, price, phone, transactions, categories, location: { display_address } } = business
-    const cusine = categories.map(category => {
+    const type = categories.map(category => {
         if(typeof category === 'string') return category
         else return category.title
     }).join(',')
@@ -17,7 +17,7 @@ const businessDetails = ({business}) => {
         <BusinessParticulars 
             price={price}
             phone={phone}
-            cusine={cusine}
+            type={type}
             address={display_address && display_address.length ? display_address.join(',') : ''}
             services={transactions.join(',')}
         />
@@ -30,6 +30,7 @@ const businessDetails = ({business}) => {
 
 const styles = StyleSheet.create({
     detailsContainer: {
+        flex: 1,
         alignItems: 'center'
     },
     businessName: {

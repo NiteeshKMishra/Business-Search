@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet } from 'react-native';
 
-const BusinessParticulars = ({ cusine, price, phone, address, services, is_closed }) => {
+const BusinessParticulars = ({ type, price, phone, address, services, is_closed }) => {
 
     return (
         <View style={styles.detailContainer}>
             <Text style={styles.detailHeader}>Details</Text>
             <View style={styles.detailSection}>
                 <Text style={[styles.statusTag, !is_closed ? { backgroundColor: '#5EE700' } : { backgroundColor: '#FF1414' }]}> Currently {!is_closed ? 'Open' : 'closed'} </Text>
-                <Text style={[styles.detailText, styles.detailTextHeader]}>Cusine</Text>
-                <Text style={styles.detailText}>{cusine}</Text>
+                <Text style={[styles.detailText, styles.detailTextHeader]}>Type</Text>
+                <Text style={styles.detailText}>{type}</Text>
                 <Text style={[styles.detailText, styles.detailTextHeader]}>Phone</Text>
                 <Text style={styles.detailText}>{phone}</Text>
                 <Text style={[styles.detailText, styles.detailTextHeader]}>Address</Text>

@@ -1,18 +1,16 @@
 import React from "react";
 import { FlatList, StyleSheet, View, Text } from 'react-native';
-import { useSelector } from "react-redux";
 
 import BusinessCard from "./BusinessCard";
 
-const BusinessList = () => {
-    const businesses = useSelector(state => state.businesses.businesses)
+const BusinessList = ({ businessList}) => {
 
     return(
         <View style={styles.listContainer}>
-            {businesses.length > 0 && (<Text style={styles.listText}>Showing top {businesses.length} results</Text>)}
+            {businessList.length > 0 && (<Text style={styles.listText}>Showing top {businessList.length} results</Text>)}
             <FlatList 
                 keyExtractor={business => business.id}
-                data={businesses}
+                data={businessList}
                 renderItem={({item}) => (
                     <BusinessCard business={item} />
                 )}

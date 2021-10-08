@@ -13,7 +13,9 @@ const BusinessOverview = ({ navigation }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadCurrentBusiness(businessId))
+        if(business.id !== businessId){
+            dispatch(loadCurrentBusiness(businessId))
+        }
     }, [])
 
     return (<>

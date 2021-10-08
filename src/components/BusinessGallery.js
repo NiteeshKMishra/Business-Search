@@ -20,6 +20,7 @@ const BusinessGallery = ({ photos }) => {
 const styles = StyleSheet.create({
     imageContainer: {
         width: '100%',
+        flex: 1
     },
     imageHeader: {
         width: '70%',

@@ -1,31 +1,37 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { View, Text, StyleSheet } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 
 import BusinessList from '../components/BusinessList'
-
-const DEFAULT_TEXT = 'pasta'
 
 import SearchBar from '../components/SearchBar'
 import { loadBusiness } from '../store/actions/business'
 
 const BusinesssSearch = () => {
     const [searchText, setSearchText] = useState('')
+    const [defaultSearch, setDefaultSearch] = useState('hotels')
 
+    const businessList = useSelector(state => state.businesses.businesses)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadBusiness(DEFAULT_TEXT))
+        if(defaultSearch){
+            dispatch(loadBusiness(defaultSearch))
+        }
     }, [])
 
     const toggleSearchText = useCallback(
         (textValue) => {
             setSearchText(textValue)
+            if(defaultSearch){
+                setDefaultSearch('')
+            }
         }
     , [])
 
     const onTextSubmit = useCallback(
         async () => {
+            setSearchText('')
             await dispatch(loadBusiness(searchText))
         }
     , [searchText])
@@ -37,11 +43,17 @@ const BusinesssSearch = () => {
                 toggleSearchText={toggleSearchText}
                 onTextSubmit={onTextSubmit}
             />
-            <BusinessList />
+            {Boolean(defaultSearch) && <Text style={styles.defaultSearchText}>We are showing some {defaultSearch} for you</Text>}
+            <BusinessList businessList={businessList} />
         </View>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    defaultSearchText: {
+        fontSize: 12,
+        alignSelf: 'center'
+    }
+})
 
 export default BusinesssSearch
